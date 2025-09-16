@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
+import { Toaster } from 'react-hot-toast';
+import AuthProvider from "@/components/AuthProvider";
+import Navbar1 from "@/components/layout/Navbar";
+import { WishlistProvider } from "@/context/WishlistContext";
+import { CartProvider } from "@/context/CartContext";
+import Footer from "@/components/layout/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: '--font-poppins',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({ 
   subsets: ["latin"],
+  variable: '--font-inter',
 });
 
 export const metadata: Metadata = {
@@ -24,10 +31,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${poppins.variable} ${inter.variable} font-sans`}>
+        <AuthProvider>
+          <WishlistProvider>
+            <CartProvider>
+              <Navbar1 />
+              {children}
+              <Footer />
+              <Toaster />
+            </CartProvider>
+          </WishlistProvider>
+        </AuthProvider>
       </body>
     </html>
   );
