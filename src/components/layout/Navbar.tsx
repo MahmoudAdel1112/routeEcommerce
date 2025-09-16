@@ -1,13 +1,7 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import {
-  Menu,
-  Search,
-  Heart,
-  ShoppingCart,
-  User,
-} from "lucide-react";
+import { Menu, Search, Heart, ShoppingCart, User } from "lucide-react";
 import { useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 
@@ -64,7 +58,7 @@ interface Navbar1Props {
 
 const Navbar1 = ({
   logo = {
-    url: "https://www.shadcnblocks.com",
+    url: "/",
     title: "Exclusive",
   },
   menu = [
